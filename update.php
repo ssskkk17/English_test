@@ -43,27 +43,27 @@ if(!empty($_POST['button'])) {
             <?php foreach ($stmt as $row) {;?>
             <div>
                 <label>名前（姓）:</label>
-                <input type="text"name="family_name"value="<?php echo $row['family_name'];?>">
+                <input type="text"name="family_name"pattern="[\u4E00-\u9FFF\u3040-\u309Fー]*"value="<?php echo $row['family_name'];?>">
                 <?php if(!empty($_POST['button']) && !empty($error['family_name'])) {echo "名前（姓）は入力必須です。";}?>
             </div>
             <div>
                 <label>名前（名）:</label>
-                <input type="text"name="last_name"value="<?php echo $row['last_name'];?>">
+                <input type="text"name="last_name"pattern="[\u4E00-\u9FFF\u3040-\u309Fー]*"value="<?php echo $row['last_name'];?>">
                 <?php if(!empty($_POST['button']) && !empty($error['last_name'])){echo "名前（名）は入力必須です。";}?>
             </div>
             <div>
                 <label>ユーザネーム:</label>
-                <input type="text"name="user_name"value="<?php echo $row['user_name'];?>">
+                <input type="text"name="user_name"pattern="^[ァ-ヶー]+$"value="<?php echo $row['user_name'];?>">
                 <?php if(!empty($_POST['button']) && !empty($error['user_name'])){echo "ユーザネームは入力必須です";}?>
             </div>
             <div>
                 <label>メールアドレス:</label>
-                <input type="email"name="mail"value="<?php echo $row['mail'];?>">
+                <input type="email"name="mail"pattern="^[-@a-zA-Z0-9]+$"value="<?php echo $row['mail'];?>">
                 <?php if(!empty($_POST['button']) && !empty($error['mail'])){echo "メールアドレスは入力必須です";}?>
             </div>
             <div>
                 <label>パスワード:</label>
-                <input type="password"name="password">
+                <input type="password"pattern="^[-@a-zA-Z0-9]+$"name="password">
                 <br>
                 <strong>パスワードを変更しない場合は未入力のままで構いません。</strong>
             </div>
@@ -83,7 +83,7 @@ if(!empty($_POST['button'])) {
             </div>
             <div>
                 <label>TOEICのスコア:</label>
-                <input type="text"name="score"value="<?php echo $row['score'];?>">
+                <input type="number"name="score"maxlength="3"placeholder="数字のみ入力可能です"value="<?php echo $row['score'];?>">
                 <br>
                 <strong>＊データがない場合、0と表示されます。</strong>
             </div>

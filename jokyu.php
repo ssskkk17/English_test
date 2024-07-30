@@ -1,4 +1,10 @@
 <?php
+session_start();
+if(empty($_SESSION['user_name'])) {
+    header('Location:top.php');
+}
+?>
+<?php
 //deploy
 $q1="to move soldiers or weapons into a position where they are ready fpr military action";
 //glitch
@@ -29,7 +35,17 @@ $q13="weak and easily hurt physically or emotionally";
 $q14="to check that something is true or accurate";
 //insulation
 $q15="the act of protecting something with a material that prevents heat, sound, electricity, etc. from passing through; the materials used for this";
-$text=array($q1, $q2, $q3, $q4, $q5, $q6, $q7, $q8, $q9, $q10, $q11, $q12, $q13, $q14, $q15);
+//oust
+$q16="to force somebody out of a job or position of power, especially in order to take their place";
+//exclusive
+$q17="only to be used by one particular person or group; only given to one particular person or group";
+//affluent
+$q18="having a lot of money and a good standard of living. The word is similar to prosperous, wealthy.";
+//purge
+$q19="to remove people from an organization, often violently, because their opinions or activities are unacceptable to the people in power";
+//abort
+$q20="to end a pregnancy early in order to prevent a baby from developing and being born alive";
+$text=array($q1, $q2, $q3, $q4, $q5, $q6, $q7, $q8, $q9, $q10, $q11, $q12, $q13, $q14, $q15, $q16, $q17, $q18, $q19, $q20);
 $rand=array_rand($text, 10);
 ?>
 <!DOCTYPE html>
@@ -125,6 +141,31 @@ $rand=array_rand($text, 10);
                     echo "<input type='radio'name='q15'value='cuisine'>cuisine";
                     echo "<input type='radio'name='q15'value='insulation'>insulation";
                     echo "<input type='radio'name='q15'value='railing'>railing";
+                } elseif ($text[$key] == "$q16") {
+                    echo "<input type='radio'name='q16'value='admonish'required>admonish";
+                    echo "<input type='radio'name='q16'value='condense'>condense";
+                    echo "<input type='radio'name='q16'value='allay'>allay";
+                    echo "<input type='radio'name='q16'value='oust'>oust";
+                } elseif ($text[$key] == "$q17") {
+                    echo "<input type='radio'name='q17'value='exclusive'required>exclusive";
+                    echo "<input type='radio'name='q17'value='nasal'>nasal";
+                    echo "<input type='radio'name='q17'value='bogus'>bogus";
+                    echo "<input type='radio'name='q17'value='coarse'>coarse";
+                } elseif ($text[$key] == "$q18") {
+                    echo "<input type='radio'name='q18'value='impoverished'required>impoverished";
+                    echo "<input type='radio'name='q18'value='giddy'>giddy";
+                    echo "<input type='radio'name='q18'value='affluent'>affluent";
+                    echo "<input type='radio'name='q18'value='indefferent'>indefferent";
+                } elseif ($text[$key] == "$q19") {
+                    echo "<input type='radio'name='q19'value='muse'required>muse";
+                    echo "<input type='radio'name='q19'value='chide'>chide";
+                    echo "<input type='radio'name='q19'value='bask'>bask";
+                    echo "<input type='radio'name='q19'value='purge'>purge";
+                } elseif ($text[$key] == "$q20") {
+                    echo "<input type='radio'name='q20'value='endorse'required>endorse";
+                    echo "<input type='radio'name='q20'value='wince'>wince";
+                    echo "<input type='radio'name='q20'value='abort'>abort";
+                    echo "<input type='radio'name='q20'value='soothe'>soothe";
                 }
                 echo "<br>";
                 echo "<br>";

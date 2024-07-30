@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(empty($_SESSION['user_name'])) {
+    header('Location:top.php');
+}
+?>
 <?php 
 $good=[];
 ?>
@@ -12,7 +18,6 @@ $good=[];
     <body>
         <h1>解答（上級）</h1>
         <?php 
-        session_start();
         echo $_SESSION['user_name']."さんの答え";
         ?>
         <p><?php
@@ -222,6 +227,76 @@ $good=[];
                     echo "<strong>不正解です。正解はinsulation</strong>";
                 }
             }
+            ?>
+        </p>
+        
+        <p><?php
+            if(!empty($_POST['q16'])) {
+                echo $_POST['q16'];
+                echo "<br>";
+                if($_POST['q16'] == "oust") {
+                    array_push($good, "q16");
+                    echo "正解";
+                } else {
+                    echo "<strong>不正解です。正解はoust</strong>";
+                }
+            }
+            ?>
+        </p>
+        
+        <p><?php
+             if(!empty($_POST['q17'])) {
+                echo $_POST['q17'];
+                echo "<br>";
+                if($_POST['q17'] == "exclusive") {
+                    array_push($good, "q17");
+                    echo "正解";
+                } else {
+                    echo "<strong>不正解です。正解はexclusive</strong>";
+                }
+             }
+            ?>
+        </p>
+        
+        <p><?php
+             if(!empty($_POST['q18'])) {
+                echo $_POST['q18'];
+                echo "<br>";
+                if($_POST['q18'] == "affluent") {
+                    array_push($good, "q18");
+                    echo "正解";
+                } else {
+                    echo "<strong>不正解です。正解はaffluent</strong>";
+                }
+             }
+            ?>
+        </p>
+        
+        <p><?php
+             if(!empty($_POST['q19'])) {
+                echo $_POST['q19'];
+                echo "<br>";
+                if($_POST['q19'] == "purge") {
+                    array_push($good, "q19");
+                    echo "正解";
+                } else {
+                    echo "<strong>不正解です。正解はpurge</strong>";
+                }
+             }
+            ?>
+        </p>
+        
+        <p><?php
+             if(!empty($_POST['q20'])) {
+                echo $_POST['q20'];
+                echo "<br>";
+                if($_POST['q20'] == "abort") {
+                    array_push($good, "q20");
+                    echo "正解";
+                } else {
+                    echo "<strong>不正解です。正解はabort</strong>";
+                }
+             }
             ?>
         </p>
         <?php

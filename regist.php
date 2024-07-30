@@ -42,27 +42,27 @@ if(!empty($_POST['button'])) {
             <form method="post"action="<?php if(empty($error) && !empty($_POST['button'])){echo 'regist_confirm.php';}?>">
                 <div>
                     <label>名前（姓）</label>
-                    <input type="text"name="family_name"value="<?php if(!empty($_POST['family_name'])){echo $_POST['family_name'];}?>">
+                    <input type="text"name="family_name"pattern="[\u4E00-\u9FFF\u3040-\u309Fー]*"value="<?php if(!empty($_POST['family_name'])){echo $_POST['family_name'];}?>">
                     <?php if(!empty($error['family_name'])){echo "<p>"."未入力です。名前（姓）を入力してください。"."</p>";}?>
                 </div>
                 <div>
                     <label>名前（名）</label>
-                    <input type="text"name="last_name"value="<?php if(!empty($_POST['last_name'])){echo $_POST['last_name'];}?>">
+                    <input type="text"name="last_name"pattern="[\u4E00-\u9FFF\u3040-\u309Fー]*"value="<?php if(!empty($_POST['last_name'])){echo $_POST['last_name'];}?>">
                     <?php if(!empty($error['last_name'])){echo "<p>"."未入力です。名前（名）を入力してください。"."</p>";}?>
                 </div>
                 <div>
                     <label>ユーザー名</label>
-                    <input type="text"name="user_name"value="<?php if(!empty($_POST['user_name'])){echo $_POST['user_name'];}?>">
+                    <input type="text"name="user_name"pattern="^[ァ-ヶーa-zA-Z]+$"placeholder="カタカナと英字のみ"value="<?php if(!empty($_POST['user_name'])){echo $_POST['user_name'];}?>">
                     <?php if(!empty($error['user_name'])){echo "<p>"."未入力です。ユーザー名を入力してください。"."</p>";}?>
                 </div>
                 <div>
                     <label>メールアドレス</label>
-                    <input type="email"name="mail"value="<?php if(!empty($_POST['mail'])){echo $_POST['mail'];}?>">
+                    <input type="email"name="mail"pattern="^[-@a-zA-Z0-9]+$"value="<?php if(!empty($_POST['mail'])){echo $_POST['mail'];}?>">
                     <?php if(!empty($error['mail'])){echo "<p>"."未入力です。メールアドレスを入力してください。"."<p>";}?>
                 </div>
                 <div>
                     <label>パスワード</label>
-                    <input type="password"name="password"value="<?php if(!empty($_POST['password'])){echo $_POST['password'];}?>">
+                    <input type="password"name="password"pattern="^[-@a-zA-Z0-9]+$"value="<?php if(!empty($_POST['password'])){echo $_POST['password'];}?>">
                     <?php if(!empty($error['password'])){echo "<p>"."未入力です。パスワードを入力してください。"."</p>";}?>
                 </div>
                 <div>
@@ -84,7 +84,7 @@ if(!empty($_POST['button'])) {
                 </div>
                 <div>
                     <label>TOEICのスコア</label>
-                    <input type="text"name="score"maxlength="3"value="<?php if(!empty($_POST['score'])) { echo $_POST['score'];}?>">
+                    <input type="number"name="score"maxlength="3"placeholder="数字のみ入力可能です"value="<?php if(!empty($_POST['score'])) { echo $_POST['score'];}?>">
                     <br>
                     <a>*受験したことがなかったら大丈夫です</a>
                 </div>

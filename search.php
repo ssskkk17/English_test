@@ -26,7 +26,7 @@ if(!empty($_POST['search'])) {
     if(!empty($_POST['mail'])) {
         $mail=$_POST['mail'];
     }
-    if(!empty($_POST['gender'])) {
+    if(isset($_POST['gender']) and $_POST['gender']==1 or $_POST['gender']==2) {
         $gender=$_POST['gender'];
     }
     if(!empty($_POST['pre']) && $_POST['pre']=="未選択") {
@@ -34,6 +34,21 @@ if(!empty($_POST['search'])) {
     } else {
         $pre=$_POST['pre'];
     }
+}
+?>
+<?php
+if(!empty($_POST['search'])) {
+    $pdo=new PDO("mysql:dbname=eng_test;host=localhost;", "root", "");
+    if(!empty($gender) && !empty($pre)) {
+        $stmt=$pdo->query("select * from user where family_name LIKE '%$family_name%' AND last_name LIKE '%$last_name%' AND user_name LIKE '%$user_name%' AND mail LIKE '%$mail%' AND gender='$gender' AND pre='$pre' AND delete_flag='0' order by id desc");
+    } elseif(!empty($gender)) {
+        $stmt=$pdo->query("select * from user where family_name LIKE '%$family_name%' AND last_name LIKE '%$last_name%' AND user_name LIKE '%$user_name%' AND mail LIKE '%$mail%' AND gender='$gender' AND delete_flag='0' order by id desc");
+    } elseif(!empty($pre)) {
+        $stmt=$pdo->query("select * from user where family_name LIKE '%$family_name%' AND last_name LIKE '%$last_name%' AND user_name LIKE '%$user_name%' AND mail LIKE '%$mail%' AND pre='$pre' AND delete_flag='0' order by id desc");
+    } elseif(!empty($pre_null)) {
+        $stmt=$pdo->query("select * from user where family_name LIKE '%$family_name%' AND last_name LIKE '%$last_name%' AND user_name LIKE '%$user_name%' AND mail LIKE '%$mail%' AND delete_flag='0' order by id desc");
+    }
+    $msg="<h3>該当アカウント一覧</h3>";
 }
 ?>
 <!DOCTYPE html>
@@ -82,21 +97,8 @@ if(!empty($_POST['search'])) {
             <input type="submit"class="search"name="search"value="検索">
         </form>
         <br><br>
-        <?php 
-        if(!empty($_POST['search'])){?>
-            <?php
-            echo "該当アカウントが見つかりました。こちらですか？";
-            $pdo=new PDO("mysql:dbname=eng_test;host=localhost;", "root", "");
-            if(!empty($_POST['gender'])) {
-                $stmt=$pdo->query("select * from user where family_name LIKE '%$family_name%' AND last_name LIKE '%$last_name%' AND user_name LIKE '%$user_name%' AND mail LIKE '%$mail%' AND gender='$gender' where delete_flag='0' order by id desc");
-            } elseif(!empty($pre)) {
-                $stmt=$pdo->query("select * from user where family_name LIKE '%$family_name%' AND last_name LIKE '%$last_name%' AND user_name LIKE '%$user_name%' AND mail LIKE '%$mail%' AND pre='$pre' where delete_flag='0' order by id desc");
-            } elseif(!empty($pre_null)) {
-                $stmt=$pdo->query("select * from user where delete_flag='0' order by id desc");
-            }
-            echo "<h3>該当アカウント一覧</h3>";
-            ?>
         <table border="1"cellspacing="0"class="table">
+            <?php if(!empty($msg)) { echo $msg;}?>
             <?php
             foreach ($stmt as $row) {?>
             <tr>
@@ -143,7 +145,6 @@ if(!empty($_POST['search'])) {
                     </form>
                 </td>
             </tr>
-            <?php };?>
             <?php };?>
         </table>
         <br>

@@ -30,7 +30,9 @@
                 </div>
                 <div>
                     <label>パスワード</label>
-                    <?php echo $_POST['password'];?>
+                    <?php $password=$_POST['password'];
+                    echo str_repeat('●', strlen($password)), PHP_EOL;
+                    ?>
                 </div>
                 <div>
                     <label>性別</label>
