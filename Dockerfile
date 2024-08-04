@@ -1,6 +1,6 @@
 FROM php:8.2.12
 
-COPY /docker/php
+COPY /php-docker/docker/php
 
 WORKDIR /docker/php
 
